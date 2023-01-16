@@ -1,7 +1,7 @@
 roms := \
-	pokered.gbc \
-	pokeblue.gbc \
-	pokeblue_debug.gbc
+	pokered.pocket \
+	pokeblue.pocket \
+	pokeblue_debug.pocket
 patches := \
 	pokered.patch \
 	pokeblue.patch
@@ -48,9 +48,9 @@ RGBLINK ?= $(RGBDS)rgblink
 .PHONY: all red blue blue_debug clean tidy compare tools
 
 all: $(roms)
-red:        pokered.gbc
-blue:       pokeblue.gbc
-blue_debug: pokeblue_debug.gbc
+red:        pokered.pocket
+blue:       pokeblue.pocket
+blue_debug: pokeblue_debug.pocket
 red_vc:     pokered.patch
 blue_vc:    pokeblue.patch
 
@@ -63,10 +63,10 @@ clean: tidy
 
 tidy:
 	$(RM) $(roms) \
-	      $(roms:.gbc=.sym) \
-	      $(roms:.gbc=.map) \
+	      $(roms:.pocket=.sym) \
+	      $(roms:.pocket=.map) \
 	      $(patches) \
-	      $(patches:.patch=_vc.gbc) \
+	      $(patches:.patch=_vc.pocket) \
 	      $(patches:.patch=_vc.sym) \
 	      $(patches:.patch=_vc.map) \
 	      $(patches:%.patch=vc/%.constants.sym) \
@@ -97,7 +97,7 @@ $(pokeblue_debug_obj): RGBASMFLAGS += -D _BLUE -D _DEBUG
 $(pokered_vc_obj):     RGBASMFLAGS += -D _RED -D _RED_VC
 $(pokeblue_vc_obj):    RGBASMFLAGS += -D _BLUE -D _BLUE_VC
 
-%.patch: vc/%.constants.sym %_vc.gbc %.gbc vc/%.patch.template
+%.patch: vc/%.constants.sym %_vc.pocket %.pocket vc/%.patch.template
 	tools/make_patch $*_vc.sym $^ $@
 
 rgbdscheck.o: rgbdscheck.asm
@@ -140,13 +140,13 @@ pokered_vc_pad     = 0x00
 pokeblue_vc_pad    = 0x00
 pokeblue_debug_pad = 0xff
 
-pokered_opt        = -jsv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON RED"
-pokeblue_opt       = -jsv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLUE"
-pokeblue_debug_opt = -jsv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLUE"
-pokered_vc_opt     = -jsv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON RED"
-pokeblue_vc_opt    = -jsv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLUE"
+pokered_opt        = -js -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON RED" -f hg
+pokeblue_opt       = -js -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLUE" -f hg
+pokeblue_debug_opt = -js -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLUE" -f hg
+pokered_vc_opt     = -js -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON RED" -f hg
+pokeblue_vc_opt    = -js -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLUE" -f hg
 
-%.gbc: $$(%_obj) layout.link
+%.pocket: $$(%_obj) layout.link
 	$(RGBLINK) -p $($*_pad) -d -m $*.map -n $*.sym -l layout.link -o $@ $(filter %.o,$^)
 	$(RGBFIX) -p $($*_pad) $($*_opt) $@
 

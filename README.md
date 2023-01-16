@@ -1,12 +1,12 @@
 # Pokémon: Version Rouge and Bleue [![Build Status][ci-badge]][ci]
 
-This is a disassembly of Pokémon: Version Rouge and Bleue.
+This is a disassembly of Pokémon: Version Rouge and Bleue for the Analogue Pocket.
 
 It builds the following ROMs:
 
-* Pokemon - Version Rouge (F) [S].gb  `sha1: 47a7622fa30e6402a3891fe65b3a930bf9bd7aec`
-* Pokemon - Version Bleue (F) [S].gb  `sha1: 47faa910d0e073c600665bf9c83b6bd17babdf8a`
-* pokeblue_debug.gbc (debug build) `sha1: a46b07c821b0df992237071490d681cdd61e8d1a`
+* Pokemon - Version Rouge (F) [S].pocket  `sha1: 26f222d77d586fc661d31649ee8b3380207d17fd`
+* Pokemon - Version Bleue (F) [S].pocket  `sha1: af6cb8f046c6b1abe7bfa93589da7695056c868e`
+* pokeblue_debug.pocket (debug build) `sha1: d6a03f88267bbe1658c3521f5858aaf78f7367aa`
 
 To set up the repository, see [**INSTALL.md**](INSTALL.md).
 

@@ -93,8 +93,8 @@ DEF rWave_c           EQU $ff3c
 DEF rWave_d           EQU $ff3d
 DEF rWave_e           EQU $ff3e
 DEF rWave_f           EQU $ff3f
-DEF rLCDC             EQU $ff40 ; LCD Control (R/W)
-DEF rLCDC_ENABLE      EQU 7
+DEF rLCDC             EQU $ff4e ; LCD Control (R/W)
+DEF rLCDC_ENABLE      EQU 0
 DEF rLCDC_ENABLE_MASK EQU 1 << rLCDC_ENABLE
 DEF rSTAT             EQU $ff41 ; LCDC Status (R/W)
 DEF rSCY              EQU $ff42 ; Scroll Y (R/W)
